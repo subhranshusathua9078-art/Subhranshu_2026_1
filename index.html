@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prof. Susanat Kumar Rout</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding-top: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 900px;
+            width: 100%;
+            overflow: hidden;
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            padding: 0 20px;
+        }
+
+        .nav-link {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1em;
+            padding: 8px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .nav-link:hover {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .nav-link.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .header .title {
+            font-size: 1.2em;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .page-section {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        .content {
+            padding: 50px 40px;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .profile-image {
+            text-align: center;
+        }
+
+        .profile-image img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 5px solid #f0f0f0;
+            transition: transform 0.3s ease;
+        }
+
+        .profile-image img:hover {
+            transform: scale(1.05);
+        }
+
+        .profile-info {
+            color: #333;
+        }
+
+        .mission-section {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 5px solid #667eea;
+            margin-bottom: 30px;
+        }
+
+        .mission-section h2 {
+            color: #667eea;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .mission-text {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #555;
+            font-style: italic;
+        }
+
+        .mantra {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .mantra h3 {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .mantra-text {
+            font-size: 1.5em;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .subjects {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 15px;
+        }
+
+        .subjects h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .subject-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .subject-tag {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 0.95em;
+            font-weight: 500;
+            box-shadow: 0 3px 10px rgba(102, 126, 234, 0.2);
+            transition: transform 0.2s ease;
+        }
+
+        .subject-tag:hover {
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .mission-section h2 {
+                font-size: 1.5em;
+            }
+
+            .mantra-text {
+                font-size: 1.2em;
+            }
+        }
+
+        .footer {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .contact-section {
+            padding: 50px 40px;
+        }
+
+        .contact-info {
+            background: #f8f9fa;
+            padding: 40px;
+            border-radius: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-info h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .contact-icon {
+            font-size: 1.5em;
+            margin-right: 15px;
+            color: #667eea;
+            min-width: 30px;
+        }
+
+        .contact-details {
+            flex: 1;
+        }
+
+        .contact-label {
+            font-weight: 600;
+            color: #667eea;
+            margin-bottom: 5px;
+            font-size: 0.95em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .contact-value {
+            color: #333;
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        .contact-value a {
+            color: #667eea;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-value a:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                gap: 15px;
+            }
+
+            .nav-link {
+                font-size: 1em;
+                padding: 6px 15px;
+            }
+
+            .contact-section {
+                padding: 30px 20px;
+            }
+
+            .contact-info {
+                padding: 25px 20px;
+            }
+
+            .contact-info h2 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="navbar">
+            <nav class="nav-container">
+                <a href="#" class="nav-link active" onclick="showSection('home', this); return false;">Home</a>
+                <a href="#" class="nav-link" onclick="showSection('blog', this); return false;">Blog</a>
+                <a href="#" class="nav-link" onclick="showSection('about', this); return false;">About</a>
+                <a href="#" class="nav-link" onclick="showSection('contact', this); return false;">Contact</a>
+            </nav>
+        </div>
+
+        <!-- Home Section -->
+        <section id="home" class="page-section active">
+            <div class="header">
+                <h1>Prof. Susanat Kumar Rout</h1>
+                <div class="title">Educator & Mentor</div>
+            </div>
+            
+            <div class="content">
+                <div class="profile-image">
+                    <img src="images.jpg" alt="Prof. Susanat Kumar Rout">
+                    <!-- Replace 'professor-image.jpg' with the actual path to the professor's image -->
+                </div>
+                
+                <div class="profile-info">
+                    <div class="mission-section">
+                        <h2>My Mission</h2>
+                        <p class="mission-text">
+                            My mission is simple — to teach C, Data structure and system, Digital Marketing with depth, clarity, and a heart full of dedication. With my guiding mantra — "Learn, Implement, and Earn."
+                        </p>
+                    </div>
+                    
+                    <div class="mantra">
+                        <h3>Guiding Mantra</h3>
+                        <div class="mantra-text">Learn, Implement, and Earn</div>
+                    </div>
+                    
+                    <div class="subjects">
+                        <h3>Areas of Expertise</h3>
+                        <div class="subject-tags">
+                            <span class="subject-tag">C Programming</span>
+                        <span class="subject-tag">Data Structures</span>
+                        <span class="subject-tag">Java</span>
+                        <span class="subject-tag">Mysql</span>
+                        <span class="subject-tag">C++ Programming</span>
+                        <span class="subject-tag">Python</span>
+                        <span class="subject-tag">Android</span>
+                        <span class="subject-tag">Oracle</span>
+                        <span class="subject-tag">Graphic design</span>
+                        <span class="subject-tag">Web Design using PHP</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Section -->
+        <section id="blog" class="page-section">
+            <div class="header">
+                <h1>Blog</h1>
+                <div class="title">Latest Articles & Insights</div>
+            </div>
+            <div class="content">
+                <div style="grid-column: 1 / -1; text-align: center; padding: 50px 20px;">
+                    <h2 style="color: #667eea; margin-bottom: 20px;">Coming Soon</h2>
+                    <p style="color: #666; font-size: 1.1em;">Blog posts and articles will be available here soon.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="page-section">
+            <div class="header">
+                <h1>About</h1>
+                <div class="title">Learn More About Me</div>
+            </div>
+            <div class="content">
+                <div class="profile-image">
+                    <img src="images.jpg" alt="Prof. Susanat Kumar Rout">
+                </div>
+                
+                <div class="profile-info">
+                    <div class="mission-section">
+                        <h2>My Mission</h2>
+                        <p class="mission-text">
+                            My mission is simple — to teach C, Data structure and system, Digital Marketing with depth, clarity, and a heart full of dedication. With my guiding mantra — "Learn, Implement, and Earn."
+                        </p>
+                    </div>
+                    
+                    <div class="mantra">
+                        <h3>Guiding Mantra</h3>
+                        <div class="mantra-text">Learn, Implement, and Earn</div>
+                    </div>
+                    
+                    <div class="subjects">
+                        <h3>Areas of Expertise</h3>
+                        <div class="subject-tags">
+                            <span class="subject-tag">C Programming</span>
+                            <span class="subject-tag">Data Structures</span>
+                            <span class="subject-tag">Java</span>
+                            <span class="subject-tag">Mysql</span>
+                            <span class="subject-tag">C++ Programming</span>
+                            <span class="subject-tag">Python</span>
+                            <span class="subject-tag">Android</span>
+                            <span class="subject-tag">Oracle</span>
+                            <span class="subject-tag">Graphic design</span>
+                            <span class="subject-tag">Web Design using PHP</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="page-section">
+            <div class="header">
+                <h1>Contact</h1>
+                <div class="title">Get in Touch</div>
+            </div>
+            <div class="contact-section">
+                <div class="contact-info">
+                    <h2>Contact Information</h2>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div class="contact-details">
+                            <div class="contact-label">Address</div>
+                            <div class="contact-value">M4/46, Acharya Vihar, Bhubaneswar, Odisha 751013</div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <div class="contact-details">
+                            <div class="contact-label">Phone</div>
+                            <div class="contact-value"><a href="tel:06742544690">0674 2544690</a></div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">✉️</div>
+                        <div class="contact-details">
+                            <div class="contact-label">Email</div>
+                            <div class="contact-value"><a href="mailto:info@litindia.ac.in">info@litindia.ac.in</a></div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">🌐</div>
+                        <div class="contact-details">
+                            <div class="contact-label">Website</div>
+                            <div class="contact-value"><a href="http://www.litindia.ac.in" target="_blank">www.litindia.ac.in</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <div class="footer">
+            <p><b>Dedicated to Excellence in Education</b></p>
+        </div>
+    </div>
+
+    <script>
+        function showSection(sectionId, element) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.page-section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Update active nav link
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Activate the clicked link
+            if (element) {
+                element.classList.add('active');
+            }
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Initialize: show home section on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set home link as active
+            document.querySelector('.nav-link[onclick*="home"]').classList.add('active');
+        });
+    </script>
+</body>
+</html>
